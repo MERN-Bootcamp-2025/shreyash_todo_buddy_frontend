@@ -5,19 +5,22 @@ import axiosInstance from '../../services/axiosInstance/axios'
 import { toast } from 'react-toastify';
 import { useDispatch } from 'react-redux';
 import { setCredentials } from '../../store/slice/authSlice';
+import { useNavigate } from 'react-router-dom';
 
 
 const Login: React.FC = () => {
     const [formData, setFormData] = useState({ email: '', password: '' });
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const handelSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         try {
             const response = await axiosInstance.post('/login', formData);
-            console.log('response.data',response.data)
-            dispatch(setCredentials({accessToken : response.data.accessToken , userId : response.data.userId , userRole : response.data.role}))
+            console.log('response.data', response.data)
+            dispatch(setCredentials({ accessToken: response.data.accessToken, userId: response.data.userId, userRole: response.data.role }))
             toast.success("Login successful!");
+            navigate('/mytasks')
         } catch (err) {
             toast.error("Error while logging in!");
             console.error(err);
