@@ -1,2 +1,2 @@
-# shreyash_todo_buddy_frontend
-react+vite with typescript 
+# React + TypeScript + Vite
+
