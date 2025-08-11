@@ -26,16 +26,28 @@ const Add_UpdateTask: React.FC<AddUpdateTaskProps> = ({ isOpen, onOpenChange, ge
         priority: '',
     });
 
+    const [modalTitle, setModelTitle] = useState<string>('');
+
     useEffect(() => {
         if (taskToEdit) {
+            setModelTitle("Update Task")
             setFormData({
                 title: taskToEdit.title,
                 description: taskToEdit.description,
                 status: taskToEdit.status,
                 priority: taskToEdit.priority,
             });
+        } else {
+            setModelTitle("Add New Task");
+            setFormData({
+                title: '',
+                description: '',
+                status: '',
+                priority: '',
+            });
         }
     }, [taskToEdit]);
+
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
@@ -75,7 +87,7 @@ const Add_UpdateTask: React.FC<AddUpdateTaskProps> = ({ isOpen, onOpenChange, ge
     };
 
     return (
-        <Modal isOpen={isOpen} onOpenChange={onOpenChange} title="Add New Task">
+        <Modal isOpen={isOpen} onOpenChange={onOpenChange} title={modalTitle}>
             <form onSubmit={handleSubmit} className="space-y-6 px-4">
                 <Input
                     name="title"

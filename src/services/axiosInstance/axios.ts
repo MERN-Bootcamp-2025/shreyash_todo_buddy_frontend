@@ -38,9 +38,16 @@ axiosInstance.interceptors.response.use(
 
 axiosInstance.interceptors.request.use((config) => {
     const accessToken = localStorage.getItem('accessToken');
+    const userId = localStorage.getItem('userId');
+
     if (accessToken) {
         config.headers.Authorization = `Bearer ${accessToken}`;
     }
+
+    if (userId) {
+        config.headers['user_id'] = userId.toString();
+    }
+    console.log('userId',userId);
     return config;
 }, (error) => {
     return Promise.reject(error);

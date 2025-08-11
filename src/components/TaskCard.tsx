@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from './ui/button/Button';
 import { FiEdit, FiTrash2 } from 'react-icons/fi';
+import Chip from './ui/chip/chip';
+import axiosInstance from '../services/axiosInstance/axios';
 
 
 interface TaskCardProps {
@@ -22,12 +24,35 @@ const TaskCard: React.FC<TaskCardProps> = ({
     onEdit,
     onDelete,
 }) => {
+    const [selectStatus, setSelectStatus] = useState<string>(status);
+    const [selectPriority, setSelectPriority] = useState<string>(priority);
+
+
     const handleDelete = async () => {
         if (onDelete) onDelete();
     };
 
     const handleEdit = () => {
         if (onEdit) onEdit({ id, title, description, status, priority });
+    };
+
+    const handleStatus = async (newStatus: string) => {
+        setSelectStatus(newStatus);
+        try {
+            await axiosInstance.patch(`/todos/${id}`, { status: newStatus });
+        } catch (error) {
+            console.error("Error updating status:", error);
+        }
+
+    }
+
+    const handlePriority = async (newPriority: string) => {
+        setSelectPriority(newPriority);
+        try {
+            await axiosInstance.patch(`/todos/${id}`, { priority: newPriority });
+        } catch (error) {
+            console.error("Error updating status:", error);
+        }
     };
 
     return (
@@ -43,12 +68,9 @@ const TaskCard: React.FC<TaskCardProps> = ({
                 </p>
 
                 <div className="mt-2 flex gap-2 text-sm">
-                    <p>
-                        {status}
-                    </p>
-                    <p>
-                        {priority}
-                    </p>
+                    <Chip label={selectStatus} type="status" onClick={handleStatus} />
+
+                    <Chip label={selectPriority} type="priority" onClick={handlePriority} />
                 </div>
             </div>
 
@@ -66,3 +88,4 @@ const TaskCard: React.FC<TaskCardProps> = ({
 
 export default TaskCard;
 
+    

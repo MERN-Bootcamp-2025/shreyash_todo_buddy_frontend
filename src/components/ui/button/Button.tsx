@@ -22,6 +22,7 @@ const Button: React.FC<ButtonProps> = ({ children, primary, secondary, success, 
         Number(!!success) +
         Number(!!warning) +
         Number(!!danger);
+
     if (variationCount > 1) {
         console.warn(
             'Only one of primary, secondary, success, warning, danger can be true'
@@ -29,7 +30,7 @@ const Button: React.FC<ButtonProps> = ({ children, primary, secondary, success, 
     }
 
     const finalClasses = classNames(className,
-        'px-3 py-1.5 border',
+        'px-3 py-1.5 border cursor-pointer',
         {
             'border-blue-500 bg-blue-500 text-white': primary,
             'border-gray-900 bg-gray-900 text-white': secondary,

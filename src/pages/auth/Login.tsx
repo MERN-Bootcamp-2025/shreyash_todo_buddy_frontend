@@ -19,8 +19,8 @@ const Login: React.FC = () => {
             const response = await axiosInstance.post('/login', formData);
             console.log('response.data', response.data)
             dispatch(setCredentials({ accessToken: response.data.accessToken, userId: response.data.userId, userRole: response.data.role }))
-            toast.success("Login successful!");
             navigate('/mytasks')
+            toast.success("Login successful!");
         } catch (err) {
             toast.error("Error while logging in!");
             console.error(err);
@@ -41,10 +41,9 @@ const Login: React.FC = () => {
                     <label htmlFor="TaskMaster" className='font-semibold text-2xl text-center'>TaskMaster</label>
                     <label htmlFor="welcomeBack" className='font-bold text-2xl text-center mt-3'>Welcome Back</label>
                 </div>
-                <Input type="email" name="email" placeholder='Enter your Email' label='Email' className='py-5 mb-4' value={formData.email} onChange={handelChange} />
-                <Input type="password" name="password" placeholder='Enter your Password' label='Password' className='py-5 mb-4' value={formData.password} onChange={handelChange} />
-                <Button className='rounded mt-4 w-full py-2 font-bold hover:bg-green-300' primary>Login</Button>
-                <a href="" className='text-center block mt-4'>Forgot Password?</a>
+                <Input type="email" name="email" placeholder='Enter your Email' label='Email' className='py-3 mb-4' value={formData.email} onChange={handelChange} />
+                <Input type="password" name="password" placeholder='Enter your Password' label='Password' className='py-3 mb-4' value={formData.password} onChange={handelChange} />
+                <Button type="submit" className='rounded mt-4 w-full py-3 font-bold hover:bg-blue-800' primary>Login</Button>
             </form>
         </div>
     )
