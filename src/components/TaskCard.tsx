@@ -9,7 +9,7 @@ interface TaskCardProps {
     id: string;
     title: string;
     description: string;
-    status: 'To Do' | 'In Progress' | 'Done';
+    status: 'To Do' | 'In Progress' | 'Done' | 'Will Not Do';
     priority: 'Low' | 'Medium' | 'High';
     onEdit?: (task: any) => void;
     onDelete?: () => void;

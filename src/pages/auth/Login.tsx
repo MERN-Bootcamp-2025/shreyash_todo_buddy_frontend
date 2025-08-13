@@ -20,9 +20,9 @@ const Login: React.FC = () => {
             console.log('response.data', response.data)
             dispatch(setCredentials({ accessToken: response.data.accessToken, userId: response.data.userId, userRole: response.data.role }))
             navigate('/mytasks')
-            toast.success("Login successful!");
+            // toast.success("Login successful!");
         } catch (err) {
-            toast.error("Error while logging in!");
+            // toast.error("Error while logging in!");
             console.error(err);
         }
     }
