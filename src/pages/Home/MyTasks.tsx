@@ -108,6 +108,7 @@ const MyTasks: React.FC = () => {
     const onSearch = (text: string) => {
         console.log('text', text);
         setTitle(text);
+        setPage(1);
     }
 
     return (
@@ -177,7 +178,7 @@ const MyTasks: React.FC = () => {
                             >
                                 Previous
                             </Button>
-                            <span>Page {page} of {totalPages}</span>
+                            <span>Page {page} / {totalPages}</span>
                             <Button
                                 className='rounded-full border-none w-[100px] bg-gray-300 hover:bg-gray-500'
                                 disabled={page === totalPages}

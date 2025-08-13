@@ -50,11 +50,11 @@ const InviteUser: React.FC = () => {
             const response = await axiosInstance.post('/invite', requestData);
 
             if (response.status === 200) {
-                toast.success('User invited successfully!');
+                // toast.success('User invited successfully!');
             } else {
-                toast.error('Failed to invite user!');
+                // toast.error('Failed to invite user!');
             }
-            navigate('/')
+            navigate('/mytasks')
         } catch (error) {
             console.error('Error inviting user:', error);
             toast.error('Error while inviting user!');

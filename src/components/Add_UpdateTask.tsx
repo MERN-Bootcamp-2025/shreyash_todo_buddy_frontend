@@ -74,9 +74,9 @@ const Add_UpdateTask: React.FC<AddUpdateTaskProps> = ({ isOpen, onOpenChange, ge
 
             const response = taskToEdit ? await axiosInstance.put(`/todos/${taskToEdit.id}`, requestData) : await axiosInstance.post('/todos', requestData);
 
-            if (response) {
-                toast.success(taskToEdit ? 'Task updated successfully!' : 'Task added successfully!');
-            }
+            // if (response) {
+            //     toast.success(taskToEdit ? 'Task updated successfully!' : 'Task added successfully!');
+            // }
             getTodos();
             onOpenChange(false);
 
